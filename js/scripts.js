@@ -35,3 +35,5 @@ fetch( "http://api.open-notify.org/astros.json" ) // Sends the request...
     // Add our <ul> to the <body> so we can see it in the browser!
     document.body.appendChild( peopleUL );
   } );
+
+axios; // If we don't get an error on this line, Axios is installed and working!
