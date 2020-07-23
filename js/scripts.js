@@ -36,4 +36,44 @@ fetch( "http://api.open-notify.org/astros.json" ) // Sends the request...
     document.body.appendChild( peopleUL );
   } );
 
-axios; // If we don't get an error on this line, Axios is installed and working!
+/**
+ * Axios AJAX Library Example
+ */
+// @link https://github.com/axios/axios
+// axios; // If we don't get an error on this line, Axios is installed and working!
+
+// Location for our request...
+axios.get( "http://api.open-notify.org/iss-now.json" ) // Type of request is GET.
+  // Handle response...
+  .then( response => {
+    // Test test test! Are we getting anything?
+    console.log( response ); // Yep! Looks like our info we want is in response.data
+    // Let's grab that space station's position details!
+    const pos = response.data.iss_position; // Object containing latitude and longitude properties.
+    /**
+     * <DL>
+     *   <DT>Title of Item(s)</DT>
+     *   <DD>Item Contents</DD>
+     *   <DT>Title of Item(s)</DT>
+     *   <DD>Item Contents</DD>
+     *   <DD>Item Contents</DD>
+     * </DL>
+     */
+    const posDL = document.createElement( "DL" );
+    const latDT = document.createElement( "DT" );
+    latDT.textContent = "Latitude";
+    const latDD = document.createElement( "DD" );
+    latDD.textContent = pos.latitude; // Get the value from our latitude property (see response.)
+    const longDT = document.createElement( "DT" );
+    longDT.textContent = "Longitude";
+    const longDD = document.createElement( "DD" );
+    longDD.textContent = pos.longitude; // Get the value from our longitude property (see response.)
+    // Append all the things to <DL>!
+    posDL.appendChild( latDT );
+    posDL.appendChild( latDD );
+    posDL.appendChild( longDT );
+    posDL.appendChild( longDD );
+    // Put this into the page (<body>)!
+    document.body.appendChild( posDL );
+  } )
+
